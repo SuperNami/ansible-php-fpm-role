@@ -1,0 +1,15 @@
+---
+- name: php-fpm
+  hosts: all
+  user: root
+  become: true
+  roles:
+  - php-fpm
+  handlers:
+  - include: handlers/main.yml
+  vars_files:
+  - vars/local.yml
+  - vars/opcache.yml
+  - vars/paths.yml
+  - vars/pt.yml
+  - vars/www-conf.yml

@@ -1,0 +1,44 @@
+---
+- name: make php log path
+  file: path={{ item }}
+        state=directory
+        recurse=yes
+        owner={{ nginx_user }}
+        group={{ nginx_user }}
+        mode=0755
+
+  with_items:
+  - "/var/log/php"
+
+
+- name: install php-fpm
+  apt: pkg={{ item }}
+       state=present
+       update_cache=yes
+
+  with_items:
+  - php7.0-fpm
+
+
+- name: make and set permissions php-fpm.log
+  file: path={{ php_fpm_error_log }}
+        state=touch
+        owner={{ nginx_user }}
+        group={{ nginx_user }}
+        mode=0755
+
+
+- name: make opcache access log
+  file: path={{ opcache_access_log }}
+        state=touch
+        owner={{ nginx_user }}
+        group={{ nginx_user }}
+        mode=0755
+
+
+- name: make opcache error log
+  file: path={{ opcache_error_log }}
+        state=touch
+        owner={{ nginx_user }}
+        group={{ nginx_user }}
+        mode=0755

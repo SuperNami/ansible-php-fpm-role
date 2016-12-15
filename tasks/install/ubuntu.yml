@@ -1,0 +1,15 @@
+---
+- name: install ondrey apt key to keyring
+  apt_key: keyserver=keyserver.ubuntu.com
+           id=E5267A6C
+           state=present
+
+
+- name: add php deb repository
+  apt_repository: repo='deb http://ppa.launchpad.net/ondrej/php/ubuntu {{ ubuntu_version_name }} main'
+                  state=present
+
+
+- name: add php deb source repository
+  apt_repository: repo='deb-src http://ppa.launchpad.net/ondrej/php/ubuntu {{ ubuntu_version_name }} main'
+                  state=present

@@ -1,0 +1,49 @@
+### Include rlerdorf opcache gui
+#
+# Match /rlerdorf/ requests
+#
+  location /rlerdorf {
+     alias {{ opcache_path }}/rlerdorf/opcache.php;
+     access_log off;
+     allow {{ home_ip }};
+     allow 127.0.0.1;
+     deny all;
+  }
+
+
+### Include amnuts opcache gui
+#
+# Match /amnuts/ requests
+#
+  location /amnuts {
+     alias {{ opcache_path }}/amnuts/index.php;
+     access_log off;
+     allow {{ home_ip }};
+     allow 127.0.0.1;
+     deny all;
+  }
+
+
+### Include peehaa opcache gui
+#
+# Match /peehaa/ requests
+#
+  location /peehaa {
+     alias {{ opcache_path }}/peehaa/public/index.php;
+     access_log off;
+     allow {{ home_ip }};
+     allow 127.0.0.1;
+     deny all;
+  }
+
+
+# Match all queries to /fpm_status & /ping
+#
+  location ~ ^/(fpm_status|ping)$ {
+    access_log off;
+    allow 127.0.0.1;
+    allow {{ home_ip }};
+    deny all;
+    fastcgi_pass unix:{{ php_global_socket }};
+    include {{ nginx_root }}/fastcgi.conf;
+  }

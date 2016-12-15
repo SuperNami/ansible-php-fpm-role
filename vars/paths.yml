@@ -1,0 +1,9 @@
+---
+# Opcache path
+opcache_path: /var/www/opcache
+
+# Apt get install locations
+php_path: /etc/php/7.0/
+php_fpm_path: /etc/php/7.0/fpm/
+php_fpm_pool_path: /etc/php/7.0/fpm/pool.d/
+php_fpm_sockets_path: /var/run/

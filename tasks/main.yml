@@ -1,0 +1,35 @@
+---
+- include: install/ubuntu.yml
+  tags: install_ubuntu_repository
+
+
+- include: install/debian.yml
+  tags: install_debian_repository
+
+
+- include: install/install.yml
+  tags: install_php_fpm
+
+
+- include: install/extensions.yml
+  tags: install_php_fpm_extensions
+
+
+- include: install/composer.yml
+  tags: install_composer
+
+
+- include: configure/configuration.yml
+  tags: php_configuration
+
+
+- include: configure/performance-tools.yml
+  tags: performance_tools
+
+
+- include: opcache-gui/download.yml
+  tags: opcache_gui_download
+
+
+- include: opcache-gui/configure.yml
+  tags: opcache_gui_configure

@@ -1,0 +1,31 @@
+---
+- name: make opcachegui folders
+  file: path={{ item }}
+        state=directory
+        recurse=yes
+        owner={{ nginx_user }}
+        group={{ nginx_user }}
+        mode=0755
+
+  with_items:
+  - "{{ opcache_path }}/rlerdorf"
+  - "{{ opcache_path }}/amnuts"
+  - "{{ opcache_path }}/peehaa"
+
+
+- name: rlerdorf opcache status
+  git: repo=https://github.com/rlerdorf/opcache-status.git
+       dest={{ opcache_path }}/rlerdorf
+       update=yes
+
+
+- name: amnuts opcache gui
+  git: repo=https://github.com/amnuts/opcache-gui.git
+       dest={{ opcache_path }}/amnuts
+       update=yes
+
+
+- name: peehaa opcache gui
+  git: repo=https://github.com/PeeHaa/OpCacheGUI.git
+       dest={{ opcache_path }}/peehaa
+       update=yes

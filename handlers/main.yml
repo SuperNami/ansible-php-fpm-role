@@ -1,0 +1,23 @@
+---
+# php-fpm
+- name: restart php-fpm
+  service: name=php7.0-fpm state=restarted
+
+- name: start php-fpm
+  service: name=php7.0-fpm state=started
+
+- name: stop php-fpm
+  service: name=php7.0-fpm state=stopped
+
+# nginx
+- name: restart nginx
+  service: name=nginx state=restarted
+
+- name: reload nginx
+  service: name=nginx state=reloaded
+
+- name: start nginx, if not running
+  service: name=nginx state=started
+
+- name: stop nginx, if running
+  service: name=nginx state=stopped

@@ -1,0 +1,17 @@
+---
+# Ubuntu
+ubuntu_version_name: xenial
+
+# Debian
+debian_version_name: jessie
+
+# Nginx user
+nginx_user: www-data
+
+# Download folder
+php_download: /opt/downloads/php/
+
+# Logs
+php_fpm_error_log: /var/log/php-fpm.log
+opcache_access_log: /var/log/php/opcache-access.log
+opcache_error_log: /var/log/php/opcache-error.log

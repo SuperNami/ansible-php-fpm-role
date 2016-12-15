@@ -1,0 +1,36 @@
+---
+- name: copy opcache.ini configuration
+  template: src=templates/opcache.ini.j2
+            dest={{ php_path }}mods-available/opcache.ini
+            owner=root
+            group=root
+            mode=0644
+  notify: restart php-fpm
+
+
+- name: make opcache.ini symbolic link
+  file: src={{ php_path }}mods-available/opcache.ini
+        dest={{ php_fpm_path }}conf.d/05-opcache.ini
+        owner=root
+        group=root
+        mode=755
+        state=link
+  notify: restart php-fpm
+
+
+- name: global www pool configuration
+  template: src=templates/www.conf.j2
+            dest={{ php_fpm_path }}pool.d/www.conf
+            owner={{ nginx_user }}
+            group={{ nginx_user }}
+            mode=0644
+  notify: restart php-fpm
+
+
+- name: php fpm configuration
+  template: src=templates/php-fpm.conf.j2
+            dest={{ php_fpm_path }}php-fpm.conf
+            owner={{ nginx_user }}
+            group={{ nginx_user }}
+            mode=0644
+  notify: restart php-fpm

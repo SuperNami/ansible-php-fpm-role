@@ -1,0 +1,14 @@
+---
+- name: install dotdeb apt key to keyring
+  apt_key: url=https://www.dotdeb.org/dotdeb.gpg
+           state=present
+
+
+- name: add dotdeb deb repository
+  apt_repository: repo='deb http://packages.dotdeb.org {{ debian_version_name }} all'
+                  state=present
+
+
+- name: add dotdeb deb-src repository
+  apt_repository: repo='deb-src http://packages.dotdeb.org {{ debian_version_name }} all'
+                  state=present

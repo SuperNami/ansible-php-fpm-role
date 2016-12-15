@@ -1,0 +1,25 @@
+---
+- name: make php performance tools folder
+  file: path={{ item }}
+        state=directory
+        recurse=yes
+        owner={{ user }}
+        group={{ user }}
+        mode=0755
+
+  with_items:
+  - "{{ php_download }}performance-tools"
+
+
+- name: download php performance tools
+  git: repo=https://github.com/engineyard/ey-php-performance-tools.git
+       dest={{ php_download }}performance-tools
+       update=yes
+
+
+- name: copy configuration
+  template: src=roles/php-fpm/templates/config.php.j2
+            dest={{ php_download }}performance-tools/zend-primer/config.php
+            owner={{ user }}
+            group={{ user }}
+            mode=0644

@@ -1,0 +1,8 @@
+---
+- name: copy conf server php-fpm-opcache.conf
+  template: src=templates/php-fpm-opcache.conf.j2
+            dest={{ nginx_conf_server }}php-fpm-opcache.conf
+            owner=root
+            group=root
+            mode=0644
+#  notify: restart nginx
